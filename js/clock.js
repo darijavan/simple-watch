@@ -2,12 +2,18 @@ class Clock {
   /**
    * Instantiate a new clock
    * @param {HTMLDivElement} el The div element container for the clock
+   * @param {{ smooth: boolean, size: number }} conf Configuration for the clock
    */
-  constructor(el) {
+  constructor(el, conf = {
+    smooth: false,
+    size: 300
+  }) {
     this.center = document.createElement('div');
     this.ph = document.createElement('div');
     this.pm = document.createElement('div');
     this.ps = document.createElement('div');
+
+    this.conf = conf;
 
     this.initClock(el);
 
@@ -19,9 +25,10 @@ class Clock {
     let hour = date.getHours(),
       min = date.getMinutes(),
       sec = date.getSeconds(),
-      hAngle = (hour - 3) * Math.PI / 6,
-      mAngle = (min - 15) * Math.PI / 30,
-      sAngle = (sec - 15) * Math.PI / 30;
+      ms = date.getMilliseconds(),
+      sAngle = (sec + (this.conf.smooth ? ms / 1000 : 0) - 15) * Math.PI / 30,
+      mAngle = (min - 15 + (this.conf.smooth ? sec / 60 : 0)) * Math.PI / 30,
+      hAngle = (hour - 3 + min / 60) * Math.PI / 6;
 
     this.ph.style.transform = `rotateZ(${hAngle}rad)`;
     this.pm.style.transform = `rotateZ(${mAngle}rad)`;
@@ -35,8 +42,8 @@ class Clock {
    * @param {HTMLDivElement} clock The clock DOM element
    */
   initClock(clock) {
-    clock.style.width = '300px';
-    clock.style.height = '300px';
+    clock.style.width = `${this.conf.size ? this.conf.size : 300}px`;
+    clock.style.height = `${this.conf.size ? this.conf.size : 300}px`;
 
     /* Center point */
     this.center.classList.add('center');
@@ -58,6 +65,8 @@ class Clock {
     let dashContainer = document.createElement('div');
     dashContainer.classList.add('dash-container');
     clock.appendChild(dashContainer);
+
+    /* Dashes for hours indicator */
     for (let i = 0; i < 12; i++) {
       let d = document.createElement('div');
       d.classList.add('big-dash');
@@ -70,6 +79,23 @@ class Clock {
       d.style.top = `${dy}px`;
       d.style.transform = `rotateZ(${angle}rad)`;
       dashContainer.appendChild(d);
+    }
+
+    /* Dashes for min indicator */
+    for (let i = 0; i < 60; i++) {
+      if (i % 5) {
+        let d = document.createElement('div');
+        d.classList.add('small-dash');
+
+        let angle = (i + 15) * Math.PI / 30,
+          dx = (dashContainer.offsetWidth / 2) * (1 - Math.cos(angle)),
+          dy = (dashContainer.offsetHeight / 2) * (1 - Math.sin(angle));
+
+        d.style.left = `${dx}px`;
+        d.style.top = `${dy}px`;
+        d.style.transform = `rotateZ(${angle}rad)`;
+        dashContainer.appendChild(d);
+      }
     }
   }
 }
