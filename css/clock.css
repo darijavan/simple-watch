@@ -1,0 +1,111 @@
+.clock {
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 50%;
+  border: 1px solid black;
+}
+
+.clock.light {
+  background-color: white;
+}
+
+.clock.dark {
+  background-color: rgb(51, 51, 51);
+}
+
+.clock>.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6%;
+  height: 6%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, .6);
+  z-index: 1000;
+}
+
+.clock.light>.center {
+  background-color: rgb(243, 75, 75);
+}
+
+.clock.dark>.center {
+  background-color: rgb(231, 231, 231);
+}
+
+.clock>.ph,
+.clock>.pm,
+.clock>.ps {
+  transform-origin: left center;
+}
+
+.clock>.ph {
+  position: absolute;
+  height: 3.5%;
+  width: 20%;
+  top: 48.25%;
+  left: 50%;
+  border-radius: 100vh;
+  box-shadow: 0 0 10px -1px rgba(0, 0, 0, .6);
+}
+
+.clock.light>.ph {
+  background-color: rgb(170, 170, 170);
+}
+
+.clock.dark>.ph {
+  background-color: rgb(223, 223, 223);
+}
+
+.clock>.pm {
+  position: absolute;
+  height: 2%;
+  width: 30%;
+  top: 49%;
+  left: 50%;
+  border-radius: 100vh;
+  box-shadow: 0 0 10px 0px rgba(0, 0, 0, .6);
+}
+
+.clock.light>.pm {
+  background-color: rgb(78, 250, 241);
+}
+
+.clock.dark>.pm {
+  background-color: rgb(223, 223, 223);
+}
+
+.clock>.ps {
+  position: absolute;
+  height: 1%;
+  width: 40%;
+  top: 49.5%;
+  left: 50%;
+  border-radius: 100vh;
+  box-shadow: 0 0 10px -1px rgba(0, 0, 0, .6);
+}
+
+.clock.light>.ps {
+  background-color: rgb(255, 97, 255);
+}
+
+.clock.dark>.ps {
+  background-color: rgb(219, 83, 83);
+}
+
+.clock>.dash-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.clock.dark>.dash-container>* {
+  position: absolute;
+  background-color: white;
+  transform-origin: left center;
+}
+
+.clock>.dash-container>.big-dash {
+  width: 5%;
+  height: 2px;
+}
