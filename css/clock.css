@@ -6,6 +6,7 @@
 
 .clock.light {
   background-color: white;
+  box-shadow: 0 0 10px -1px inset rgba(0, 0, 0, .6);
 }
 
 .clock.dark {
@@ -25,7 +26,7 @@
 }
 
 .clock.light>.center {
-  background-color: rgb(243, 75, 75);
+  background-color: #333333;
 }
 
 .clock.dark>.center {
@@ -49,7 +50,7 @@
 }
 
 .clock.light>.ph {
-  background-color: rgb(170, 170, 170);
+  background-color: #222222;
 }
 
 .clock.dark>.ph {
@@ -67,7 +68,7 @@
 }
 
 .clock.light>.pm {
-  background-color: rgb(78, 250, 241);
+  background-color: #222222;
 }
 
 .clock.dark>.pm {
@@ -84,11 +85,7 @@
   box-shadow: 0 0 10px -1px rgba(0, 0, 0, .6);
 }
 
-.clock.light>.ps {
-  background-color: rgb(255, 97, 255);
-}
-
-.clock.dark>.ps {
+.clock>.ps {
   background-color: rgb(219, 83, 83);
 }
 
@@ -98,11 +95,18 @@
   height: 100%;
 }
 
-.clock.dark>.dash-container>* {
+.clock>.dash-container>* {
   position: absolute;
-  background-color: white;
   transform-origin: left center;
   border-radius: 0 100vh 100vh 0;
+}
+
+.clock.light>.dash-container>* {
+  background-color: #222222;
+}
+
+.clock.dark>.dash-container>* {
+  background-color: white;
 }
 
 .clock>.dash-container>.big-dash {
