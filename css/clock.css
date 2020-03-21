@@ -13,6 +13,17 @@
   background-color: rgb(51, 51, 51);
 }
 
+.clock>.digits {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.clock>.digits>* {
+  position: absolute;
+  /* transform: translate(-50%, -50%); */
+}
+
 .clock>.center {
   position: absolute;
   top: 50%;
@@ -90,7 +101,7 @@
 }
 
 .clock>.dash-container {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
 }

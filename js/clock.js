@@ -2,12 +2,13 @@ class Clock {
   /**
    * Instantiate a new clock
    * @param {HTMLDivElement} el The div element container for the clock
-   * @param {{ smooth: boolean, size: number, theme: string }} conf Configuration for the clock
+   * @param {{ smooth: boolean, size: number, theme: string, showDigits: boolean }} conf Configuration for the clock
    */
   constructor(el, conf = {
     smooth: false,
     size: 300,
-    theme: 'light'
+    theme: 'light',
+    showDigits: false
   }) {
     this.center = document.createElement('div');
     this.ph = document.createElement('div');
@@ -43,6 +44,27 @@ class Clock {
    * @param {HTMLDivElement} clock The clock DOM element
    */
   initClock(clock) {
+    if (this.conf.showDigits) {
+      let digitContainer = document.createElement('div');
+      digitContainer.className = "digits";
+
+      for (let i = 0; i < 12; i++) {
+        let digit = `${i + 1}`,
+          element = document.createElement('div');
+        element.innerText = digit;
+
+        let angle = (i + 3) * Math.PI / 6,
+          dx = 5 + 40 * (1 - Math.cos(angle)),
+          dy = 5 + 40 * (1 - Math.sin(angle));
+
+        element.style.left = `${dx}%`;
+        element.style.top = `${dy - 0.5}%`;
+        digitContainer.appendChild(element);
+      }
+
+      clock.appendChild(digitContainer);
+    }
+
     clock.classList.add(this.conf.theme || 'light');
 
     clock.style.width = `${this.conf.size || 300}px`;
