@@ -3,7 +3,6 @@
 
   let clock = new Clock(clockElement, {
     smooth: false,
-    size: 400,
-    theme: 'light'
+    size: 300
   });
 })();

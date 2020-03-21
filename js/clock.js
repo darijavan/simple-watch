@@ -43,10 +43,10 @@ class Clock {
    * @param {HTMLDivElement} clock The clock DOM element
    */
   initClock(clock) {
-    clock.classList.add(this.conf.theme);
+    clock.classList.add(this.conf.theme || 'light');
 
-    clock.style.width = `${this.conf.size ? this.conf.size : 300}px`;
-    clock.style.height = `${this.conf.size ? this.conf.size : 300}px`;
+    clock.style.width = `${this.conf.size || 300}px`;
+    clock.style.height = `${this.conf.size || 300}px`;
 
     /* Center point */
     this.center.classList.add('center');
