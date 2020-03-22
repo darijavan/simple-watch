@@ -54,11 +54,11 @@ class Clock {
         element.innerText = digit;
 
         let angle = (i + 3) * Math.PI / 6,
-          dx = 5 + 40 * (1 - Math.cos(angle)),
-          dy = 5 + 40 * (1 - Math.sin(angle));
+          dx = 12 + 38 * (1 - Math.cos(angle)),
+          dy = 12 + 38 * (1 - Math.sin(angle));
 
         element.style.left = `${dx}%`;
-        element.style.top = `${dy - 0.5}%`;
+        element.style.top = `${dy}%`;
         digitContainer.appendChild(element);
       }
 
