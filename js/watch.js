@@ -24,6 +24,9 @@ class Watch {
     requestAnimationFrame(this.animate.bind(this));
   }
 
+  /**
+   * Recursive-like method for animating the watch's pointers. DO NOT CALL EXPLICITPLY
+   */
   animate() {
     let date = new Date(Date.now());
     let hour = date.getHours(),
@@ -42,11 +45,16 @@ class Watch {
   }
 
   /**
-   * 
-   * @param {HTMLDivElement} watch The watch DOM element
-   * @returns {HTMLDivElement} The container element
+   * Method for initializing the watch DOM element. THIS SHOULD BE A PRIVATE METHOD OF THE WATCH CLASS AND CALLED IMPLICITLY WITHIN THE CONSTRUCTOR. DO NOT CALL EXPLICITLY
+   * @param {HTMLDivElement} watch The watch DOM element. The method will create new element if this parameter is not provided
+   * @returns {HTMLDivElement} The watch's container element
    */
   initwatch(watch) {
+    if (!watch) {
+      watch = document.querySelector('div');
+      watch.classList.add('watch');
+    }
+
     if (this.conf.showDigits) {
       let digitContainer = document.createElement('div');
       digitContainer.className = "digits";
@@ -141,10 +149,16 @@ class Watch {
     this.watch.querySelectorAll('.digits>*').forEach(e => e.style.fontSize = `${size / 18}px`);
   }
 
+  /**
+   * Suspend the flow
+   */
   suspend() {
     this.paused = true;
   }
 
+  /**
+   * Resume the watch's animation
+   */
   resume() {
     this.paused = false;
     this.animate();
