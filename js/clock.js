@@ -59,6 +59,7 @@ class Clock {
 
         element.style.left = `${dx}%`;
         element.style.top = `${dy}%`;
+        element.style.fontSize = `${(this.conf.size || 300) / 20}px`;
         digitContainer.appendChild(element);
       }
 
