@@ -1,3 +1,8 @@
+.watch,
+.watch * {
+  transition: width 300ms ease-out, height 300ms ease-out, font-size 300ms ease-out;
+}
+
 .watch {
   box-sizing: border-box;
   position: relative;
