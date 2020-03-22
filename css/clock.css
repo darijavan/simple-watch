@@ -17,11 +17,16 @@
   position: absolute;
   width: 100%;
   height: 100%;
+  font-family: 'Gilroy';
 }
 
 .clock>.digits>* {
   position: absolute;
   transform: translate(-50%, -50%);
+}
+
+.clock.dark>.digits>* {
+  color: white;
 }
 
 .clock>.center {
