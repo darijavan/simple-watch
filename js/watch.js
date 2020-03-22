@@ -53,6 +53,7 @@ class Watch {
     if (!watch) {
       watch = document.querySelector('div');
       watch.classList.add('watch');
+      document.body.appendChild(watch);
     }
 
     if (this.conf.showDigits) {
