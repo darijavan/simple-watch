@@ -1,9 +1,10 @@
 (function () {
-  let clockElement = document.querySelector('.clock');
+  let watchElement = document.querySelector('.watch');
 
-  let clock = new Clock(clockElement, {
+  let watch = new Watch(watchElement, {
     smooth: false,
     size: 300,
-    showDigits: true
+    showDigits: true,
+    theme: 'dark'
   });
 })();

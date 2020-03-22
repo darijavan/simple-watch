@@ -1,8 +1,8 @@
-class Clock {
+class Watch {
   /**
-   * Instantiate a new clock
-   * @param {HTMLDivElement} el The div element container for the clock
-   * @param {{ smooth: boolean, size: number, theme: string, showDigits: boolean }} conf Configuration for the clock
+   * Instantiate a new watch
+   * @param {HTMLDivElement} el The div element container for the watch
+   * @param {{ smooth: boolean, size: number, theme: string, showDigits: boolean }} conf Configuration for the watch
    */
   constructor(el, conf = {
     smooth: false,
@@ -17,7 +17,7 @@ class Clock {
 
     this.conf = conf;
 
-    this.initClock(el);
+    this.initwatch(el);
 
     requestAnimationFrame(this.animate.bind(this));
   }
@@ -41,9 +41,9 @@ class Clock {
 
   /**
    * 
-   * @param {HTMLDivElement} clock The clock DOM element
+   * @param {HTMLDivElement} watch The watch DOM element
    */
-  initClock(clock) {
+  initwatch(watch) {
     if (this.conf.showDigits) {
       let digitContainer = document.createElement('div');
       digitContainer.className = "digits";
@@ -63,34 +63,34 @@ class Clock {
         digitContainer.appendChild(element);
       }
 
-      clock.appendChild(digitContainer);
+      watch.appendChild(digitContainer);
     }
 
-    clock.classList.add(this.conf.theme || 'light');
+    watch.classList.add(this.conf.theme || 'light');
 
-    clock.style.width = `${this.conf.size || 300}px`;
-    clock.style.height = `${this.conf.size || 300}px`;
+    watch.style.width = `${this.conf.size || 300}px`;
+    watch.style.height = `${this.conf.size || 300}px`;
 
     /* Center point */
     this.center.classList.add('center');
-    clock.appendChild(this.center);
+    watch.appendChild(this.center);
 
     /* Pointer for hours */
     this.ph.classList.add('ph');
-    clock.appendChild(this.ph);
+    watch.appendChild(this.ph);
 
     /* Pointer for minutes */
     this.pm.classList.add('pm');
-    clock.appendChild(this.pm);
+    watch.appendChild(this.pm);
 
     /* Pointer for seconds */
     this.ps.classList.add('ps');
-    clock.appendChild(this.ps);
+    watch.appendChild(this.ps);
 
     /* Dashes */
     let dashContainer = document.createElement('div');
     dashContainer.classList.add('dash-container');
-    clock.appendChild(dashContainer);
+    watch.appendChild(dashContainer);
 
     /* Dashes for hours indicator */
     for (let i = 0; i < 12; i++) {

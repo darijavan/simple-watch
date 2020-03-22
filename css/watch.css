@@ -1,35 +1,35 @@
-.clock {
+.watch {
   box-sizing: border-box;
   position: relative;
   border-radius: 50%;
 }
 
-.clock.light {
+.watch.light {
   background-color: white;
   box-shadow: 0 0 10px -1px inset rgba(0, 0, 0, .6);
 }
 
-.clock.dark {
+.watch.dark {
   background-color: rgb(51, 51, 51);
 }
 
-.clock>.digits {
+.watch>.digits {
   position: absolute;
   width: 100%;
   height: 100%;
   font-family: 'Gilroy';
 }
 
-.clock>.digits>* {
+.watch>.digits>* {
   position: absolute;
   transform: translate(-50%, -50%);
 }
 
-.clock.dark>.digits>* {
+.watch.dark>.digits>* {
   color: white;
 }
 
-.clock>.center {
+.watch>.center {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -41,21 +41,21 @@
   z-index: 1000;
 }
 
-.clock.light>.center {
+.watch.light>.center {
   background-color: #333333;
 }
 
-.clock.dark>.center {
+.watch.dark>.center {
   background-color: rgb(231, 231, 231);
 }
 
-.clock>.ph,
-.clock>.pm,
-.clock>.ps {
+.watch>.ph,
+.watch>.pm,
+.watch>.ps {
   transform-origin: left center;
 }
 
-.clock>.ph {
+.watch>.ph {
   position: absolute;
   height: 3.5%;
   width: 20%;
@@ -65,15 +65,15 @@
   box-shadow: 0 0 10px -1px rgba(0, 0, 0, .6);
 }
 
-.clock.light>.ph {
+.watch.light>.ph {
   background-color: #222222;
 }
 
-.clock.dark>.ph {
+.watch.dark>.ph {
   background-color: rgb(223, 223, 223);
 }
 
-.clock>.pm {
+.watch>.pm {
   position: absolute;
   height: 2%;
   width: 26%;
@@ -83,15 +83,15 @@
   box-shadow: 0 0 10px 0px rgba(0, 0, 0, .6);
 }
 
-.clock.light>.pm {
+.watch.light>.pm {
   background-color: #222222;
 }
 
-.clock.dark>.pm {
+.watch.dark>.pm {
   background-color: rgb(223, 223, 223);
 }
 
-.clock>.ps {
+.watch>.ps {
   position: absolute;
   height: 1%;
   width: 35%;
@@ -101,36 +101,36 @@
   box-shadow: 0 0 10px -1px rgba(0, 0, 0, .6);
 }
 
-.clock>.ps {
+.watch>.ps {
   background-color: rgb(219, 83, 83);
 }
 
-.clock>.dash-container {
+.watch>.dash-container {
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
-.clock>.dash-container>* {
+.watch>.dash-container>* {
   position: absolute;
   transform-origin: left center;
   border-radius: 0 100vh 100vh 0;
 }
 
-.clock.light>.dash-container>* {
+.watch.light>.dash-container>* {
   background-color: #222222;
 }
 
-.clock.dark>.dash-container>* {
+.watch.dark>.dash-container>* {
   background-color: white;
 }
 
-.clock>.dash-container>.big-dash {
+.watch>.dash-container>.big-dash {
   width: 6%;
   height: 1%;
 }
 
-.clock>.dash-container>.small-dash {
+.watch>.dash-container>.small-dash {
   width: 2%;
   height: .5%;
 }
