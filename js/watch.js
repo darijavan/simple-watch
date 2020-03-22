@@ -19,7 +19,7 @@ class Watch {
 
     this.paused = false;
 
-    this.watch = this.initwatch(el);
+    this.watch = this.initWatch(el);
 
     requestAnimationFrame(this.animate.bind(this));
   }
@@ -49,7 +49,7 @@ class Watch {
    * @param {HTMLDivElement} watch The watch DOM element. The method will create new element if this parameter is not provided
    * @returns {HTMLDivElement} The watch's container element
    */
-  initwatch(watch) {
+  initWatch(watch) {
     if (!watch) {
       watch = document.querySelector('div');
       watch.classList.add('watch');
