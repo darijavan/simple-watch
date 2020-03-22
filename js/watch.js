@@ -17,7 +17,9 @@ class Watch {
 
     this.conf = conf;
 
-    this.initwatch(el);
+    this.paused = false;
+
+    this.watch = this.initwatch(el);
 
     requestAnimationFrame(this.animate.bind(this));
   }
@@ -36,12 +38,13 @@ class Watch {
     this.pm.style.transform = `rotateZ(${mAngle}rad)`;
     this.ps.style.transform = `rotateZ(${sAngle}rad)`;
 
-    requestAnimationFrame(this.animate.bind(this));
+    if (!this.paused) requestAnimationFrame(this.animate.bind(this));
   }
 
   /**
    * 
    * @param {HTMLDivElement} watch The watch DOM element
+   * @returns {HTMLDivElement} The container element
    */
   initwatch(watch) {
     if (this.conf.showDigits) {
@@ -53,13 +56,13 @@ class Watch {
           element = document.createElement('div');
         element.innerText = digit;
 
-        let angle = (i + 3) * Math.PI / 6,
+        let angle = (i + 4) * Math.PI / 6,
           dx = 12 + 38 * (1 - Math.cos(angle)),
           dy = 12 + 38 * (1 - Math.sin(angle));
 
         element.style.left = `${dx}%`;
         element.style.top = `${dy}%`;
-        element.style.fontSize = `${(this.conf.size || 300) / 20}px`;
+        element.style.fontSize = `${(this.conf.size || 300) / 18}px`;
         digitContainer.appendChild(element);
       }
 
@@ -123,5 +126,27 @@ class Watch {
         dashContainer.appendChild(d);
       }
     }
+
+    return watch;
+  }
+
+  /**
+   * Set the size of the watch to a new value
+   * @param {number} size The watch's new size
+   */
+  setSize(size) {
+    this.watch.style.width = `${size}px`;
+    this.watch.style.height = `${size}px`;
+
+    this.watch.querySelectorAll('.digits>*').forEach(e => e.style.fontSize = `${size / 18}px`);
+  }
+
+  suspend() {
+    this.paused = true;
+  }
+
+  resume() {
+    this.paused = false;
+    this.animate();
   }
 }
