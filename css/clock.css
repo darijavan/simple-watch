@@ -76,7 +76,7 @@
 .clock>.pm {
   position: absolute;
   height: 2%;
-  width: 30%;
+  width: 26%;
   top: 49%;
   left: 50%;
   border-radius: 100vh;
@@ -94,7 +94,7 @@
 .clock>.ps {
   position: absolute;
   height: 1%;
-  width: 40%;
+  width: 35%;
   top: 49.5%;
   left: 50%;
   border-radius: 100vh;
