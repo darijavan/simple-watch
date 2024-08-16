@@ -1,26 +1,28 @@
 class Watch {
   /**
    * Instantiate a new watch
-   * @param {HTMLDivElement} el The div element container for the watch
    * @param {{ smooth: boolean, size: number, theme: string, showDigits: boolean }} conf Configuration for the watch
    */
-  constructor(el, conf = {
-    smooth: false,
-    size: 300,
-    theme: 'light',
-    showDigits: false
-  }) {
-    this.center = document.createElement('div');
-    this.ph = document.createElement('div');
-    this.pm = document.createElement('div');
-    this.ps = document.createElement('div');
+  constructor(
+    conf = {
+      smooth: false,
+      size: 300,
+      theme: "light",
+      showDigits: false,
+    }
+  ) {
+    this.center = document.createElement("div");
+    this.ph = document.createElement("div");
+    this.pm = document.createElement("div");
+    this.ps = document.createElement("div");
 
     this.conf = conf;
 
     this.paused = false;
+  }
 
+  attach(el) {
     this.watch = this.initWatch(el);
-
     requestAnimationFrame(this.animate.bind(this));
   }
 
@@ -33,9 +35,9 @@ class Watch {
       min = date.getMinutes(),
       sec = date.getSeconds(),
       ms = date.getMilliseconds(),
-      sAngle = (sec + (this.conf.smooth ? ms / 1000 : 0) - 15) * Math.PI / 30,
-      mAngle = (min - 15 + sec / 60) * Math.PI / 30,
-      hAngle = (hour - 3 + min / 60) * Math.PI / 6;
+      sAngle = ((sec + (this.conf.smooth ? ms / 1000 : 0) - 15) * Math.PI) / 30,
+      mAngle = ((min - 15 + sec / 60) * Math.PI) / 30,
+      hAngle = ((hour - 3 + min / 60) * Math.PI) / 6;
 
     this.ph.style.transform = `rotateZ(${hAngle}rad)`;
     this.pm.style.transform = `rotateZ(${mAngle}rad)`;
@@ -51,21 +53,21 @@ class Watch {
    */
   initWatch(watch) {
     if (!watch) {
-      watch = document.querySelector('div');
-      watch.classList.add('watch');
+      watch = document.querySelector("div");
+      watch.classList.add("watch");
       document.body.appendChild(watch);
     }
 
     if (this.conf.showDigits) {
-      let digitContainer = document.createElement('div');
+      let digitContainer = document.createElement("div");
       digitContainer.className = "digits";
 
       for (let i = 0; i < 12; i++) {
         let digit = `${i + 1}`,
-          element = document.createElement('div');
+          element = document.createElement("div");
         element.innerText = digit;
 
-        let angle = (i + 4) * Math.PI / 6,
+        let angle = ((i + 4) * Math.PI) / 6,
           dx = 12 + 38 * (1 - Math.cos(angle)),
           dy = 12 + 38 * (1 - Math.sin(angle));
 
@@ -78,38 +80,38 @@ class Watch {
       watch.appendChild(digitContainer);
     }
 
-    watch.classList.add(this.conf.theme || 'light');
+    watch.classList.add(this.conf.theme || "light");
 
     watch.style.width = `${this.conf.size || 300}px`;
     watch.style.height = `${this.conf.size || 300}px`;
 
     /* Center point */
-    this.center.classList.add('center');
+    this.center.classList.add("center");
     watch.appendChild(this.center);
 
     /* Pointer for hours */
-    this.ph.classList.add('ph');
+    this.ph.classList.add("ph");
     watch.appendChild(this.ph);
 
     /* Pointer for minutes */
-    this.pm.classList.add('pm');
+    this.pm.classList.add("pm");
     watch.appendChild(this.pm);
 
     /* Pointer for seconds */
-    this.ps.classList.add('ps');
+    this.ps.classList.add("ps");
     watch.appendChild(this.ps);
 
     /* Dashes */
-    let dashContainer = document.createElement('div');
-    dashContainer.classList.add('dash-container');
+    let dashContainer = document.createElement("div");
+    dashContainer.classList.add("dash-container");
     watch.appendChild(dashContainer);
 
     /* Dashes for hours indicator */
     for (let i = 0; i < 12; i++) {
-      let d = document.createElement('div');
-      d.classList.add('big-dash');
+      let d = document.createElement("div");
+      d.classList.add("big-dash");
 
-      let angle = (i + 3) * Math.PI / 6,
+      let angle = ((i + 3) * Math.PI) / 6,
         dx = 50 * (1 - Math.cos(angle)),
         dy = 50 * (1 - Math.sin(angle));
 
@@ -122,10 +124,10 @@ class Watch {
     /* Dashes for min indicator */
     for (let i = 0; i < 60; i++) {
       if (i % 5) {
-        let d = document.createElement('div');
-        d.classList.add('small-dash');
+        let d = document.createElement("div");
+        d.classList.add("small-dash");
 
-        let angle = (i + 15) * Math.PI / 30,
+        let angle = ((i + 15) * Math.PI) / 30,
           dx = 50 * (1 - Math.cos(angle)),
           dy = 50 * (1 - Math.sin(angle));
 
@@ -147,7 +149,9 @@ class Watch {
     this.watch.style.width = `${size}px`;
     this.watch.style.height = `${size}px`;
 
-    this.watch.querySelectorAll('.digits>*').forEach(e => e.style.fontSize = `${size / 18}px`);
+    this.watch
+      .querySelectorAll(".digits>*")
+      .forEach((e) => (e.style.fontSize = `${size / 18}px`));
   }
 
   /**
