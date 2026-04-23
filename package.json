@@ -1,0 +1,47 @@
+{
+  "name": "simple-watch",
+  "version": "1.0.0",
+  "description": "A lightweight, zero-dependency analog clock widget built with TypeScript and CSS",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./css": "./css/watch.css"
+  },
+  "files": [
+    "dist",
+    "css/watch.css"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write src",
+    "format:check": "prettier --check src"
+  },
+  "keywords": [
+    "watch",
+    "clock",
+    "analog",
+    "widget",
+    "typescript"
+  ],
+  "author": "Hajanirina Ridjvan Randrianandraina",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@typescript-eslint/eslint-plugin": "^8.25.0",
+    "@typescript-eslint/parser": "^8.25.0",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "prettier": "^3.5.2",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2"
+  }
+}

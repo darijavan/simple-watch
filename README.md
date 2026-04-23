@@ -1,8 +1,112 @@
-# Simple watch
+# simple-watch
 
-Simple watch made with pure HTML / CSS / JS
+A lightweight, zero-dependency analog clock widget built with TypeScript and CSS. Supports two themes (light and dark), optional digit display, smooth second-hand animation, and a simple API for attaching, resizing, pausing, and resuming.
 
 ![Dark watch](https://github.com/darijavan/simple-watch/blob/master/media/watch-dark.png) ![Light watch](https://github.com/darijavan/simple-watch/blob/master/media/watch-light.png)
+
+## Installation
+
+```sh
+pnpm add simple-watch
+# or
+npm install simple-watch
+# or
+yarn add simple-watch
+```
+
+## Usage
+
+### 1. Include the stylesheet
+
+```html
+<link rel="stylesheet" href="node_modules/simple-watch/css/watch.css" />
+```
+
+Or, with a bundler that supports CSS imports:
+
+```ts
+import 'simple-watch/css';
+```
+
+### 2. Add a container element
+
+```html
+<div class="watch"></div>
+```
+
+### 3. Instantiate and attach
+
+```ts
+import { Watch } from 'simple-watch';
+
+const watchEl = document.querySelector('.watch') as HTMLElement;
+
+const watch = new Watch({
+  size: 300,
+  theme: 'dark',
+  showDigits: true,
+  smooth: true,
+});
+
+watch.attach(watchEl);
+```
+
+### Browser (IIFE / UMD)
+
+After running `pnpm build`, reference the bundled output directly:
+
+```html
+<link rel="stylesheet" href="dist/watch.css" />
+<script src="dist/index.global.js"></script>
+<script>
+  const watch = new SimpleWatch.Watch({ theme: 'dark', size: 300 });
+  watch.attach(document.querySelector('.watch'));
+</script>
+```
+
+See the [`example/`](example/) folder for a working demo.
+
+## API
+
+### `new Watch(config?)`
+
+Creates a new `Watch` instance. All configuration options are optional.
+
+| Option       | Type                  | Default   | Description                                                     |
+| ------------ | --------------------- | --------- | --------------------------------------------------------------- |
+| `smooth`     | `boolean`             | `false`   | Enables smooth second hand via millisecond interpolation        |
+| `size`       | `number`              | `300`     | Size of the watch face in pixels                                |
+| `theme`      | `'light' \| 'dark'`   | `'light'` | Visual color theme                                              |
+| `showDigits` | `boolean`             | `false`   | Show numeric hour labels (1–12) on the watch face               |
+
+### `watch.attach(el?)`
+
+Renders the watch DOM into `el` and starts the animation loop. If no element is provided, a new `<div>` is created and appended to `document.body`.
+
+### `watch.setSize(size)`
+
+Dynamically resizes the watch face to `size` pixels. Digit font sizes are updated automatically.
+
+### `watch.suspend()`
+
+Pauses the animation loop. The watch face stays visible but frozen at the last rendered time.
+
+### `watch.resume()`
+
+Resumes the animation loop after `suspend()` has been called.
+
+## Development
+
+```sh
+pnpm install
+pnpm build         # compile TypeScript → dist/
+pnpm lint          # run ESLint
+pnpm lint:fix      # auto-fix ESLint issues
+pnpm format        # format with Prettier
+pnpm format:check  # check formatting without writing
+```
+
+Open [`example/index.html`](example/index.html) in a browser after running `pnpm build`.
 
 ## Author
 
@@ -11,3 +115,7 @@ Simple watch made with pure HTML / CSS / JS
 ## Show your support
 
 Give a ⭐️ if this project helped you!
+
+## License
+
+MIT
