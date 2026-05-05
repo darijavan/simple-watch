@@ -34,6 +34,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Import GPG key
+        id: gpg
         uses: crazy-max/ghaction-import-gpg@v6
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
@@ -44,4 +45,8 @@ jobs:
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_AUTHOR_NAME: ${{ steps.gpg.outputs.name }}
+          GIT_AUTHOR_EMAIL: ${{ steps.gpg.outputs.email }}
+          GIT_COMMITTER_NAME: ${{ steps.gpg.outputs.name }}
+          GIT_COMMITTER_EMAIL: ${{ steps.gpg.outputs.email }}
         run: pnpm release
