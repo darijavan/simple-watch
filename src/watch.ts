@@ -15,8 +15,8 @@ export class Watch {
   private readonly pm: HTMLDivElement;
   private readonly ps: HTMLDivElement;
   private readonly conf: Required<WatchConfig>;
-  private watch!: HTMLDivElement;
-  private paused = false;
+  private watch: HTMLElement | null = null;
+  private rafId: number | null = null;
 
   constructor(conf: WatchConfig = {}) {
     this.conf = {
@@ -36,16 +36,21 @@ export class Watch {
   /**
    * Initialize and render the watch inside `el`, then start the animation loop.
    * If no element is provided, a new `<div>` is created and appended to `document.body`.
+   * Calling `attach()` again while already running is a no-op.
    */
   attach(el?: HTMLElement): void {
+    if (this.rafId !== null) return;
     this.watch = this.initWatch(el);
-    requestAnimationFrame(this.animate.bind(this));
+    this.rafId = requestAnimationFrame(this.animate.bind(this));
   }
 
   /**
    * Dynamically update the size of the watch face.
    */
   setSize(size: number): void {
+    if (!this.watch) {
+      throw new Error('Watch has not been attached. Call attach() first.');
+    }
     this.watch.style.width = `${size}px`;
     this.watch.style.height = `${size}px`;
 
@@ -58,15 +63,19 @@ export class Watch {
    * Pause the animation loop.
    */
   suspend(): void {
-    this.paused = true;
+    if (this.rafId !== null) {
+      cancelAnimationFrame(this.rafId);
+      this.rafId = null;
+    }
   }
 
   /**
    * Resume the animation loop after it has been suspended.
+   * Calling `resume()` while already running is a no-op.
    */
   resume(): void {
-    this.paused = false;
-    requestAnimationFrame(this.animate.bind(this));
+    if (this.rafId !== null) return;
+    this.rafId = requestAnimationFrame(this.animate.bind(this));
   }
 
   private animate(): void {
@@ -84,21 +93,17 @@ export class Watch {
     this.pm.style.transform = `rotateZ(${mAngle}rad)`;
     this.ps.style.transform = `rotateZ(${sAngle}rad)`;
 
-    if (!this.paused) {
-      requestAnimationFrame(this.animate.bind(this));
-    }
+    this.rafId = requestAnimationFrame(this.animate.bind(this));
   }
 
-  private initWatch(el?: HTMLElement): HTMLDivElement {
-    let container: HTMLDivElement;
+  private initWatch(el?: HTMLElement): HTMLElement {
+    const container: HTMLElement = el ?? document.createElement('div');
 
-    if (el) {
-      container = el as HTMLDivElement;
-    } else {
-      container = document.createElement('div');
-      container.classList.add('watch');
+    if (!el) {
       document.body.appendChild(container);
     }
+
+    container.classList.add('watch');
 
     if (this.conf.showDigits) {
       const digitContainer = document.createElement('div');

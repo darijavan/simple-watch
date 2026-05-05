@@ -56,7 +56,7 @@ watch.attach(watchEl);
 After running `pnpm build`, reference the bundled output directly:
 
 ```html
-<link rel="stylesheet" href="dist/watch.css" />
+<link rel="stylesheet" href="css/watch.css" />
 <script src="dist/index.global.js"></script>
 <script>
   const watch = new SimpleWatch.Watch({ theme: 'dark', size: 300 });
