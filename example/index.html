@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>simple-watch — Example</title>
+    <link rel="stylesheet" href="../css/watch.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="watch"></div>
+    </div>
+
+    <!-- Built via: pnpm build -->
+    <script src="../dist/index.global.js"></script>
+    <script>
+      const watchEl = document.querySelector('.watch');
+      const watch = new SimpleWatch.Watch({
+        smooth: true,
+        size: 300,
+        showDigits: true,
+        theme: 'dark',
+      });
+      watch.attach(watchEl);
+    </script>
+  </body>
+</html>
