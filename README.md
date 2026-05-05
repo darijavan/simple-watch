@@ -2,7 +2,7 @@
 
 A lightweight, zero-dependency analog clock widget built with TypeScript and CSS. Supports two themes (light and dark), optional digit display, smooth second-hand animation, and a simple API for attaching, resizing, pausing, and resuming.
 
-![Dark watch](https://github.com/darijavan/simple-watch/blob/master/media/watch-dark.png) ![Light watch](https://github.com/darijavan/simple-watch/blob/master/media/watch-light.png)
+![Dark watch](https://github.com/darijavan/simple-watch/blob/main/media/watch-dark.png) ![Light watch](https://github.com/darijavan/simple-watch/blob/main/media/watch-light.png)
 
 ## Installation
 
