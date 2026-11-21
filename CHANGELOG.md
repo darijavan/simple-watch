@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/darijavan/simple-watch/compare/v1.0.2...v1.0.3) (2026-11-21)
+
+
+### Bug Fixes
+
+* add repository, homepage and bugs links to package.json ([1a17e8d](https://github.com/darijavan/simple-watch/commit/1a17e8da4c80a61c67d19fd62ebc04b8a260cf50))
+
 ## [1.0.2](https://github.com/darijavan/simple-watch/compare/v1.0.1...v1.0.2) (2026-11-21)
 
 
