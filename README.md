@@ -1,4 +1,4 @@
-# simple-watch
+# @ridjvan/simple-watch
 
 A lightweight, zero-dependency analog clock widget built with TypeScript and CSS. Supports two themes (light and dark), optional digit display, smooth second-hand animation, and a simple API for attaching, resizing, pausing, and resuming.
 
@@ -7,11 +7,11 @@ A lightweight, zero-dependency analog clock widget built with TypeScript and CSS
 ## Installation
 
 ```sh
-pnpm add simple-watch
+pnpm add @ridjvan/simple-watch
 # or
-npm install simple-watch
+npm install @ridjvan/simple-watch
 # or
-yarn add simple-watch
+yarn add @ridjvan/simple-watch
 ```
 
 ## Usage
@@ -19,13 +19,13 @@ yarn add simple-watch
 ### 1. Include the stylesheet
 
 ```html
-<link rel="stylesheet" href="node_modules/simple-watch/css/watch.css" />
+<link rel="stylesheet" href="node_modules/@ridjvan/simple-watch/css/watch.css" />
 ```
 
 Or, with a bundler that supports CSS imports:
 
 ```ts
-import 'simple-watch/css';
+import '@ridjvan/simple-watch/css';
 ```
 
 ### 2. Add a container element
@@ -37,7 +37,7 @@ import 'simple-watch/css';
 ### 3. Instantiate and attach
 
 ```ts
-import { Watch } from 'simple-watch';
+import { Watch } from '@ridjvan/simple-watch';
 
 const watchEl = document.querySelector('.watch') as HTMLElement;
 
@@ -57,7 +57,7 @@ After running `pnpm build`, reference the bundled output directly:
 
 ```html
 <link rel="stylesheet" href="css/watch.css" />
-<script src="dist/index.global.js"></script>
+<script src="dist/index.iife.js"></script>
 <script>
   const watch = new SimpleWatch.Watch({ theme: 'dark', size: 300 });
   watch.attach(document.querySelector('.watch'));
