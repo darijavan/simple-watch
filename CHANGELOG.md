@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/darijavan/simple-watch/compare/v1.0.1...v1.0.2) (2026-11-21)
+
+
+### Bug Fixes
+
+* publish to npm as @darijavan/simple-watch ([fcd3f84](https://github.com/darijavan/simple-watch/commit/fcd3f84ba6381dcaee0088e4f983afacb5a4b611))
+* publish to npm as @ridjvan/simple-watch ([495aeee](https://github.com/darijavan/simple-watch/commit/495aeeee7e5cf2e32129ea85bab458271e3e6e86)), closes [#2](https://github.com/darijavan/simple-watch/issues/2)
+
 ## [1.0.1](https://github.com/darijavan/simple-watch/compare/v1.0.0...v1.0.1) (2026-07-27)
 
 # 1.0.0 (2026-05-07)
